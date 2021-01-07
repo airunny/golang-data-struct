@@ -166,6 +166,48 @@ func Partition(in []int, s, e int) int {
 	return i
 }
 
+/*
+ ** 计数排序
+ *
+ * 计数排序只适用于数据范围比较小的场景
+ * 且数据只能是真正数（因为数组索引下边只能是真正数），如果不是正整数需要转成正整数再做
+ * 是否稳定：true
+ * 是否原地：false
+ * 时间复杂度：O(n)
+ */
+func CountingSort(in []int) {
+	if len(in) <= 0 {
+		return
+	}
+
+	max := in[0]
+	for i := 1; i < len(in); i++ {
+		if in[i] > max {
+			max = in[i]
+		}
+	}
+
+	countSort := make([]int, max+1)
+	for i := 0; i < len(in); i++ {
+		countSort[in[i]]++
+	}
+
+	for i := 1; i < len(countSort); i++ {
+		countSort[i] = countSort[i] + countSort[i-1]
+	}
+
+	temp := make([]int, len(in))
+	for i := len(in) - 1; i >= 0; i-- {
+		index := countSort[in[i]] - 1
+		temp[index] = in[i]
+		countSort[in[i]]--
+	}
+
+	for i := 0; i < len(in); i++ {
+		in[i] = temp[i]
+	}
+}
+
 /*我是分割线============================================*/
 // 1、在O(n)时间复杂度内找到数组中第K大元素
 /**
