@@ -223,7 +223,6 @@ func FindKNumber(in []int, k int) int {
 	if len(in) <= 0 || k <= 0 || k > len(in) {
 		return -1
 	}
-
 	return FindNumber(in, k, 0, len(in)-1)
 }
 

@@ -93,8 +93,7 @@ func TestFindKNumber(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		ret := FindKNumber(kNumberList, test.K)
-		assert.Equal(t, test.Expected, ret)
+		assert.Equal(t, test.Expected, FindKNumber(kNumberList, test.K))
 	}
 }
 
