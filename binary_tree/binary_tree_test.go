@@ -1,6 +1,7 @@
 package binary_tree
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -22,20 +23,39 @@ var (
 	root1  = NewNode("a", left, right1)
 )
 
+// [a b d e c f g]
 func TestPreOrder(t *testing.T) {
-	PreOrder(root)
+	assert.True(t, reflect.DeepEqual(PreOrder(root), []interface{}{"a", "b", "d", "e", "c", "f", "g"}))
 }
 
+// [a b d e c f g]
+func TestPreOrder2(t *testing.T) {
+	assert.True(t, reflect.DeepEqual(PreOrder2(root), []interface{}{"a", "b", "d", "e", "c", "f", "g"}))
+}
+
+// [d b e a f c g]
 func TestInOrder(t *testing.T) {
-	InOrder(root)
+	assert.True(t, reflect.DeepEqual(InOrder(root), []interface{}{"d", "b", "e", "a", "f", "c", "g"}))
 }
 
+// [d b e a f c g]
+func TestInOrder2(t *testing.T) {
+	assert.True(t, reflect.DeepEqual(InOrder2(root), []interface{}{"d", "b", "e", "a", "f", "c", "g"}))
+}
+
+// [d e b f g c a]
 func TestPostOrder(t *testing.T) {
-	PostOrder(root)
+	assert.True(t, reflect.DeepEqual(PostOrder(root), []interface{}{"d", "e", "b", "f", "g", "c", "a"}))
 }
 
+// [d e b f g c a]
+func TestPostOrder2(t *testing.T) {
+	assert.True(t, reflect.DeepEqual(PostOrder2(root), []interface{}{"d", "e", "b", "f", "g", "c", "a"}))
+}
+
+// [a b c d e f g]
 func TestLevelOrder(t *testing.T) {
-	LevelOrder(root)
+	assert.True(t, reflect.DeepEqual(LevelOrder(root), []interface{}{"a", "b", "c", "d", "e", "f", "g"}))
 }
 
 func TestTreeHeight(t *testing.T) {
